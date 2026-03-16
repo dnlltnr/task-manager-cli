@@ -11,4 +11,16 @@ Task
 - title: str
 - completed: bool
 
+- complete
+
+## Planned Architecture (draft)
+
+TaskManager
+
+- tasks: list
+
+- add_task
+- delete_task
+- list_tasks
+- complete_task
 
