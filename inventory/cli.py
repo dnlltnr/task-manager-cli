@@ -21,19 +21,20 @@ def get_int(number):
 
 def print_tasks(tasks):
     for task in tasks:
-        status = "✔" if task.completed else "❌"
+        status = "✔️" if task.completed else "✖️"
         print(f"{task.id} | {task.title} | {status}")
 
 
 def add_task_action(task_manager):
-    title = input("Write a title for your task:\n")
+    title = input("\nWrite a title for your task:\n")
     task_manager.add_task(title)
+    print("\nThe task has been successfully added.")
 
 
 def delete_task_action(task_manager):
     tasks = task_manager.list_tasks()
     if not tasks:
-        print("\nNo tasks found.\n")
+        print("\nThe list of tasks is empty.\n")
         return
     
     print_tasks(tasks)
@@ -41,7 +42,7 @@ def delete_task_action(task_manager):
     number = input("\nWhich task do you wish to delete?\n")
     task_id = get_int(number)
     if task_id is None:
-        print("\nNot a number.")
+        print("\nNot a number.\n")
         return
     
     success = task_manager.delete_task(task_id)
@@ -49,13 +50,13 @@ def delete_task_action(task_manager):
     if not success:
         print("\nTask not found.\n")
     else:
-        print("\nThe task has been successfully deleted.\n")
+        print("\nThe task has been successfully deleted.")
 
 
 def list_task_action(task_manager):
     tasks = task_manager.list_tasks()
     if not tasks:
-        print("\nNo tasks found.\n")
+        print("\nThe list of tasks is empty.\n")
         return
     
     print_tasks(tasks)
@@ -64,7 +65,7 @@ def list_task_action(task_manager):
 def complete_task_action(task_manager):
     tasks = task_manager.list_tasks()
     if not tasks:
-        print("\nNo tasks found.\n")
+        print("\nThe list of tasks is empty.\n")
         return
     
     print_tasks(tasks)
@@ -72,7 +73,7 @@ def complete_task_action(task_manager):
     number = input("\nWhich task do you wish to mark as completed?\n")
     task_id = get_int(number)
     if task_id is None:
-        print("\nNot a number.")
+        print("\nNot a number.\n")
         return
     
     success = task_manager.complete_task(task_id)
@@ -80,7 +81,7 @@ def complete_task_action(task_manager):
     if not success:
         print("\nTask not found.\n")
     else:
-        print("\nThe task has been successfully marked as completed.\n")
+        print("\nThe task has been successfully marked as completed.")
 
 
 ACTIONS = {
