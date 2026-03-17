@@ -11,7 +11,11 @@ class TaskManager:
                 return task
 
     def add_task(self, title):
-        new_id = len(self.tasks) + 1
+        if not self.tasks:
+            new_id = 1
+        else:
+            new_id = max(task.id for task in self.tasks) + 1
+            
         new_task = Task(new_id, title)
         self.tasks.append(new_task)
 
