@@ -12,6 +12,7 @@ def menu():
 
 
 def print_tasks(tasks):
+    
     for task in tasks:
         status = "✔" if task.completed else "❌"
         print(f"{task.id} | {task.title} | {status}")
@@ -24,6 +25,10 @@ def add_task_action(task_manager):
 
 def delete_task_action(task_manager):
     tasks = task_manager.list_tasks()
+    if not tasks:
+        print("\nNo tasks found.\n")
+        return
+    
     print_tasks(tasks)
 
     task_id = int(input("Which task do you wish to delete?\n"))
@@ -33,13 +38,18 @@ def delete_task_action(task_manager):
 def list_task_action(task_manager):
     tasks = task_manager.list_tasks()
     if not tasks:
-            print("\nNo tasks found.\n")
-            return
+        print("\nNo tasks found.\n")
+        return
+    
     print_tasks(tasks)
 
 
 def complete_task_action(task_manager):
     tasks = task_manager.list_tasks()
+    if not tasks:
+        print("\nNo tasks found.\n")
+        return
+    
     print_tasks(tasks)
 
     task_id = int(input("Which task do you wish to mark as completed?\n"))
