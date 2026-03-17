@@ -43,6 +43,11 @@ def delete_task_action(task_manager):
     if task_id is None:
         print("\nNot a number.")
         return
+    
+    task = task_manager._find_task(task_id)
+    if task is None:
+        print("\nTask not found.\n")
+        return
 
     task_manager.delete_task(task_id)
 
@@ -68,6 +73,11 @@ def complete_task_action(task_manager):
     task_id = get_int(number)
     if task_id is None:
         print("\nNot a number.")
+        return
+    
+    task = task_manager._find_task(task_id)
+    if task is None:
+        print("\nTask not found.\n")
         return
     
     task_manager.complete_task(task_id)
