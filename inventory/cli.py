@@ -38,18 +38,18 @@ def delete_task_action(task_manager):
     
     print_tasks(tasks)
 
-    number = input("Which task do you wish to delete?\n")
+    number = input("\nWhich task do you wish to delete?\n")
     task_id = get_int(number)
     if task_id is None:
         print("\nNot a number.")
         return
     
-    task = task_manager._find_task(task_id)
-    if task is None:
-        print("\nTask not found.\n")
-        return
+    success = task_manager.delete_task(task_id)
 
-    task_manager.delete_task(task_id)
+    if not success:
+        print("\nTask not found.\n")
+    else:
+        print("\nThe task has been successfully deleted.\n")
 
 
 def list_task_action(task_manager):
@@ -69,18 +69,18 @@ def complete_task_action(task_manager):
     
     print_tasks(tasks)
 
-    number = input("Which task do you wish to mark as completed?\n")
+    number = input("\nWhich task do you wish to mark as completed?\n")
     task_id = get_int(number)
     if task_id is None:
         print("\nNot a number.")
         return
     
-    task = task_manager._find_task(task_id)
-    if task is None:
+    success = task_manager.complete_task(task_id)
+
+    if not success:
         print("\nTask not found.\n")
-        return
-    
-    task_manager.complete_task(task_id)
+    else:
+        print("\nThe task has been successfully marked as completed.\n")
 
 
 ACTIONS = {
