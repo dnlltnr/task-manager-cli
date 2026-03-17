@@ -19,7 +19,6 @@ class TaskManager:
         task = self._find_task(task_id)
         self.tasks.remove(task)
         
-
     def list_tasks(self):
         return self.tasks.copy()
     
