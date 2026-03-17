@@ -11,8 +11,15 @@ def menu():
     print()
 
 
+def get_int(number):
+    try:
+        number = int(number)
+    except ValueError:
+        return None
+    return number
+
+
 def print_tasks(tasks):
-    
     for task in tasks:
         status = "✔" if task.completed else "❌"
         print(f"{task.id} | {task.title} | {status}")
@@ -31,7 +38,12 @@ def delete_task_action(task_manager):
     
     print_tasks(tasks)
 
-    task_id = int(input("Which task do you wish to delete?\n"))
+    number = input("Which task do you wish to delete?\n")
+    task_id = get_int(number)
+    if task_id is None:
+        print("\nNot a number.")
+        return
+
     task_manager.delete_task(task_id)
 
 
@@ -52,7 +64,12 @@ def complete_task_action(task_manager):
     
     print_tasks(tasks)
 
-    task_id = int(input("Which task do you wish to mark as completed?\n"))
+    number = input("Which task do you wish to mark as completed?\n")
+    task_id = get_int(number)
+    if task_id is None:
+        print("\nNot a number.")
+        return
+    
     task_manager.complete_task(task_id)
 
 
