@@ -1,9 +1,31 @@
 
 from .models import Task
+import json
 
 class TaskManager:
     def __init__(self):
         self.tasks = []
+        self.load_tasks()
+
+    def save_tasks(self):
+        tasks_data = [task.to_dict() for task in self.tasks]
+
+        with open("tasks.json", "w", encoding="utf-8") as file:
+            json.dump(tasks_data, file, indent=4)
+
+    def load_tasks(self):
+        try:
+            with open("tasks.json", "r", encoding="utf-8") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            self.tasks = []
+            return
+        
+        self.tasks = []
+        for task_data in data:
+            task = Task.from_dict(task_data)
+            self.tasks.append(task)
+
 
     def _find_task(self, task_id):
         for task in self.tasks:
@@ -18,6 +40,7 @@ class TaskManager:
 
         new_task = Task(new_id, title)
         self.tasks.append(new_task)
+        self.save_tasks()
 
     def delete_task(self, task_id):
         task = self._find_task(task_id)
@@ -25,6 +48,7 @@ class TaskManager:
             return False
         
         self.tasks.remove(task)
+        self.save_tasks()
         return True
         
     def list_tasks(self):
@@ -36,4 +60,5 @@ class TaskManager:
             return False
         
         task.complete()
+        self.save_tasks()
         return True
