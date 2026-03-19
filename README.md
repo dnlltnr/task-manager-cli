@@ -21,7 +21,7 @@ Built as a learning project focused on:
 
 
 ## Project Structure
-
+```text
 task-manager-cli/
 │
 ├── inventory/
@@ -33,7 +33,7 @@ task-manager-cli/
 │
 ├── README.md
 ├── .gitignore
-
+```
 
 ## Run the app
 
