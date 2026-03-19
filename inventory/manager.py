@@ -3,19 +3,20 @@ from .models import Task
 import json
 
 class TaskManager:
-    def __init__(self):
+    def __init__(self, file_path="tasks.json"):
+        self.file_path = file_path
         self.tasks = []
         self.load_tasks()
 
     def save_tasks(self):
         tasks_data = [task.to_dict() for task in self.tasks]
 
-        with open("tasks.json", "w", encoding="utf-8") as file:
+        with open(self.file_path, "w", encoding="utf-8") as file:
             json.dump(tasks_data, file, indent=4)
 
     def load_tasks(self):
         try:
-            with open("tasks.json", "r", encoding="utf-8") as file:
+            with open(self.file_path, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             self.tasks = []
