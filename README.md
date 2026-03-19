@@ -1,26 +1,70 @@
 
 # Task Manager CLI
 
-Learning project for practicing Python OOP, CLI apps and JSON persistence.
+Simple command-line application for managing tasks built in Python.
 
-## Task Data Model (draft)
+Built as a learning project focused on:
+- Python OOP
+- CLI applications
+- JSON persistence
+- Testing with pytest
 
-Task
 
-- id: int
-- title: str
-- completed: bool
+## Features
 
-- complete
+- Add tasks
+- Delete tasks
+- List tasks
+- Mark tasks as completed
+- Persistent storage using JSON
+- Fully tested with pytest
 
-## Planned Architecture (draft)
 
-TaskManager
+## Project Structure
 
-- tasks: list
+task-manager-cli/
+│
+├── inventory/
+│   ├── models.py
+│   ├── manager.py
+│   ├── cli.py
+│
+├── tests/
+│
+├── README.md
+├── .gitignore
 
-- add_task
-- delete_task
-- list_tasks
-- complete_task
 
+## Run the app
+
+- Make sure Python is installed
+
+Run in terminal:
+```bash
+python -m inventory.cli
+```
+
+The application creates a `tasks.json` file automatically to store tasks.
+
+## Run tests
+
+Run in terminal:
+```bash
+python -m pytest
+```
+
+## What I Learned
+
+- Designing simple OOP architecture
+- Separating concerns (CLI vs Business logic)
+- Working with JSON
+- Writing simple tests using pytest
+- Handling file-based persistence
+
+
+## Future Improvements
+
+- Edit task title
+- Add due dates
+- Add task priorities
+- Improve CLI UX
